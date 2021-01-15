@@ -1,6 +1,6 @@
 const Address = require('../../models/Address')
 
-const addAddress = async (_obj, {input}, _context) => {
+const addAddress = async (obj, {input}, context) => {
     try {
         const insert = await Address.query().insert({
             street: input.street,
