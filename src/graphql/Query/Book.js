@@ -1,4 +1,6 @@
 const Book = require('../../models/Book')
+const Author = require('../../models/Author')
+const Publisher = require('../../models/Publisher')
 
 const allBooks = async () => {
 	try {
@@ -21,10 +23,25 @@ const bookById = async (_obj, {id}, _context) => {
     }
 }
 
+const author = async({ authorId }, params, context) => {
+    const a = await Author.query().findOne({id:authorId})
+    return a
+}
+
+const publisher = async({ publisherId }, params, context) => {
+    const p = await Publisher.query().findOne({id:publisherId})
+    return p
+}
+
 const resolver = {
     Query: {
         bookById,
         allBooks,
+    },
+    Book: {
+        publisher,
+        author,
+
     }
 }
 
